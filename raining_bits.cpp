@@ -38,25 +38,21 @@ T random_element(int low, int high, std::vector<T> list)
 }
 
 void fill_matrix(std::vector<std::vector<std::string>> &matrix, std::vector<int> random_start) 
-{
-    int rows = matrix.size();
+{    
     int cols = matrix[0].size();
 
     while (true)
     {
-        for (int i = 0; i < rows - 1; i++)
+        for (int j = 0; j < cols - 1; j++)
         {
-            for (int j = 0; j < cols - 1; j++)
+            if (j % 7 == 0)
             {
-                if (i == 0 && j % 7 == 0)
-                {
-                    int random_row_index = random_element(0, random_start.size() - 1, random_start);
-                    std::string color = random_element(0, COLORS.size() - 1, COLORS);
-                    std::string bit = random_element<std::string>(0, RAIN_BITS.size() - 1, RAIN_BITS);
-                    matrix[random_row_index][j] = BOLD + color + bit + RESET;
-                }
+                int random_row_index = random_element(0, random_start.size() - 1, random_start);
+                std::string color = random_element(0, COLORS.size() - 1, COLORS);
+                std::string bit = random_element<std::string>(0, RAIN_BITS.size() - 1, RAIN_BITS);
+                matrix[random_row_index][j] = BOLD + color + bit + RESET;
             }
-        }
+        }   
         std::this_thread::sleep_for(std::chrono::milliseconds(FILL_MATRIX_FREQUENCY));   
     }
 }
