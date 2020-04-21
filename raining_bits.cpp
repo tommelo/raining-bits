@@ -63,7 +63,6 @@ void fill_matrix(std::vector<std::vector<std::string>> &matrix, std::vector<int>
 
 void move(std::vector<std::vector<std::string>> &matrix, int col, int frequency)
 {
-    unsigned long current_index {matrix.size() - 1};
     while (true)
     {
         for(int i = matrix.size() - 1; i >= 1; i--)
